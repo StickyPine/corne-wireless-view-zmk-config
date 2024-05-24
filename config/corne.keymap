@@ -31,10 +31,9 @@
         skh: behavior {
             compatible = "zmk,behavior-tap-hold";
             label = "STICKY_HOLD";
-            # The parameters below are placeholders. Adjust them as per your needs.
-            tapping-term-ms = <225>; # Define the tapping term duration
-            flavor = "tap-preferred"; # Set the flavor to "sticky"
-            bindings = <&kp> <&skq>; # Define the key to be sticky or normal
+            tapping-term-ms = <225>; // Define the tapping term duration
+            flavor = "tap-preferred"; // Set the flavor to "sticky"
+            bindings = <&kp> <&skq>; // Define the key to be sticky or normal
             hold-while-undecided-linger;
         };
 
