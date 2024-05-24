@@ -28,8 +28,9 @@
         // lazy;
       };
 
-        skh: behavior {
-            compatible = "zmk,behavior-tap-hold";
+        skh: normal_sticky_hold_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
             label = "STICKY_HOLD";
             tapping-term-ms = <225>; // Define the tapping term duration
             flavor = "tap-preferred"; // Set the flavor to "sticky"
