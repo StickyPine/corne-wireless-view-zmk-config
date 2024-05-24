@@ -25,6 +25,7 @@
         release-after-ms = <1000>;
         quick-release;
         ignore-modifiers;
+        lazy;
       };
 
      td_caps: tap_dance_mod_tap {
@@ -51,16 +52,6 @@
             mods = <(MOD_RSFT|MOD_LSFT)>;
         };
 
-        skd: sticky_key_hold_tap {
-            compatible = "zmk,behavior-hold-tap";
-            label = "STICKY_KEY_HOLD_TAP";
-            #binding-cells = <2>;
-            bindings = <&kp>, <&kp>;
-            tapping-term-ms = <225>;
-            quick-release;
-            hold-trigger-key-positions = <1>;
-            ignore-modifiers;
-        };
 };
 
 
@@ -77,7 +68,7 @@
                         bindings = <
    &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
    &kp ESC &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-   &sk LCTRL &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &sk RALT
+   &skq LCTRL &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &sk RALT
                   &kp LGUI &mo LOWER &kp SPACE   &kp RET &mo RAISE &td_caps
                         >;
                 };
