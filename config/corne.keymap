@@ -29,11 +29,11 @@
       };
         skh: normal_sticky_hold_tap {
             compatible = "zmk,behavior-hold-tap";
-            #binding-cells = <2>;
+            #binding-cells = <2>; // Not sure its needed
             label = "STICKY_HOLD";
-            tapping-term-ms = <225>; // Define the tapping term duration
-            flavor = "tap-preferred"; // Set the flavor to "sticky"
-            bindings = <&kp>, <&skq>; // Define the key to be sticky or normal
+            tapping-term-ms = <225>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&skq>; 
             hold-while-undecided-linger;
         };
 
