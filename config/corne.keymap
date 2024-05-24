@@ -28,6 +28,16 @@
         lazy;
       };
 
+        skh: behavior {
+            compatible = "zmk,behavior-tap-hold";
+            label = "STICKY_HOLD";
+            # The parameters below are placeholders. Adjust them as per your needs.
+            tapping-term-ms = <200>; # Define the tapping term duration
+            flavor = "sticky"; # Set the flavor to "sticky"
+            hold-trigger-key-positions = <0>; # Specify key positions if needed
+            bindings = <&kp KEY>; # Define the key to be sticky or normal
+        };
+
      td_caps: tap_dance_mod_tap {
         compatible = "zmk,behavior-tap-dance";
         label = "TAP_DANCE_CAPS";
@@ -68,7 +78,7 @@
                         bindings = <
    &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
    &kp ESC &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-   &skq LCTRL &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &sk RALT
+   &skh LCTRL &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &sk RALT
                   &kp LGUI &mo LOWER &kp SPACE   &kp RET &mo RAISE &td_caps
                         >;
                 };
