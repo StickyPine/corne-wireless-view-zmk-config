@@ -27,17 +27,16 @@
         ignore-modifiers;
         // lazy;
       };
-/*
         skh: normal_sticky_hold_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>;
             label = "STICKY_HOLD";
             tapping-term-ms = <225>; // Define the tapping term duration
             flavor = "tap-preferred"; // Set the flavor to "sticky"
-            bindings = <&kp> <&skq>; // Define the key to be sticky or normal
+            bindings = <&kp>, <&skq>; // Define the key to be sticky or normal
             hold-while-undecided-linger;
         };
-*/
+
      td_caps: tap_dance_mod_tap {
         compatible = "zmk,behavior-tap-dance";
         label = "TAP_DANCE_CAPS";
@@ -78,7 +77,7 @@
                         bindings = <
    &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
    &kp ESC &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
-   &sk LCTRL &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &sk RALT
+   &skh LCTRL LCTRL &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &sk RALT
                   &kp LGUI &mo LOWER &kp SPACE   &kp RET &mo RAISE &td_caps
                         >;
                 };
