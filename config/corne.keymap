@@ -19,7 +19,7 @@
     behaviors {
       skq: sticky_key_quick_release {
         compatible = "zmk,behavior-sticky-key";
-        display-name = "STICKY_KEY_QUICK_RELEASE";
+        label = "STICKY_KEY_QUICK_RELEASE";
         #binding-cells = <1>;
         bindings = <&kp>;
         release-after-ms = <1000>;
@@ -30,7 +30,7 @@
         skh: normal_sticky_hold_tap {
             compatible = "zmk,behavior-hold-tap";
             #binding-cells = <2>; // Not sure its needed
-            display-name = "STICKY_HOLD";
+            label = "STICKY_HOLD";
             tapping-term-ms = <225>;
             flavor = "tap-preferred";
             bindings = <&kp>, <&skq>; 
@@ -39,7 +39,7 @@
 
      td_caps: tap_dance_mod_tap {
         compatible = "zmk,behavior-tap-dance";
-        display-name = "TAP_DANCE_CAPS";
+        label = "TAP_DANCE_CAPS";
         #binding-cells = <0>;
         tapping-term-ms = <275>;
         bindings = <&kp LSHIFT>, <&kp CAPS>;
@@ -47,7 +47,7 @@
 
         pwda: pop_os_workspace_down {
             compatible = "zmk,behavior-mod-morph";
-            display-name = "POP_OS_WORKSPACE_DOWN";
+            label = "POP_OS_WORKSPACE_DOWN";
             #binding-cells = <0>;
             bindings = <&kp LC(LG(DOWN))>, <&kp LS(LG(DOWN))>;
             mods = <(MOD_RSFT|MOD_LSFT)>;
@@ -55,7 +55,7 @@
 
         pwua: pop_os_workspace_up {
             compatible = "zmk,behavior-mod-morph";
-            display-name = "POP_OS_WORKSPACE_UP";
+            label = "POP_OS_WORKSPACE_UP";
             #binding-cells = <0>;
             bindings = <&kp LC(LG(UP))>, <&kp LS(LG(UP))>;
             mods = <(MOD_RSFT|MOD_LSFT)>;
