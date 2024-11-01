@@ -61,6 +61,22 @@
             mods = <(MOD_RSFT|MOD_LSFT)>;
         };
 
+        pwla: pop_os_workspace_left {
+            compatible = "zmk,behavior-mod-morph";
+            label = "POP_OS_WORKSPACE_LEFT";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LG(LEFT))>, <&kp LS(LG(LEFT))>;
+            mods = <(MOD_RSFT|MOD_LSFT)>;
+        };
+
+        pwra: pop_os_workspace_right {
+            compatible = "zmk,behavior-mod-morph";
+            label = "POP_OS_WORKSPACE_RIGHT";
+            #binding-cells = <0>;
+            bindings = <&kp LC(LG(RIGHT))>, <&kp LS(LG(RIGHT))>;
+            mods = <(MOD_RSFT|MOD_LSFT)>;
+        };
+
 };
 
 
@@ -91,7 +107,7 @@
 //                    | GUI |     | SPC |   | ENT |     | ALT |
                         bindings = <
    &kp DEL    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp DEL
-   &kp LSHIFT &trans &trans &pwua &pwda &trans   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
+   &kp LSHIFT &trans &pwla &pwua &pwda &pwra   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
    &trans  &bt BT_SEL 0  &bt BT_SEL 1   &bt BT_SEL 2  &bt BT_SEL 3   &bt BT_SEL 4         &trans   &kp C_VOL_DN   &kp C_VOL_UP &kp C_MUTE    &trans &trans
                           	        &bt BT_CLR     &trans       &kp SPACE      &kp RET  &trans   &kp RSHIFT
                         >;
