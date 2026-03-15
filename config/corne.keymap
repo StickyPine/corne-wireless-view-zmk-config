@@ -5,6 +5,7 @@
  */
 
 
+
 #include <behaviors.dtsi>
 #include <dt-bindings/zmk/keys.h>
 #include <dt-bindings/zmk/bt.h>
@@ -32,7 +33,7 @@
             label = "STICKY_HOLD";
             tapping-term-ms = <225>;
             flavor = "tap-preferred";
-            bindings = <&kp>, <&skq>;
+            bindings = <&kp>, <&skq>; 
             hold-while-undecided-linger;
         };
 
@@ -42,6 +43,33 @@
         #binding-cells = <0>;
         tapping-term-ms = <275>;
         bindings = <&kp LSHIFT>, <&kp CAPS>;
+        };
+
+        // Single tap: '   Double tap: dead acute (é, á, ú...)
+        td_acute: tap_dance_acute {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_ACUTE";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp SQT>, <&kp RA(SQT)>;
+        };
+
+        // Single tap: `   Double tap: dead grave (è, à, ù...)
+        td_grave: tap_dance_grave {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_GRAVE";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp GRAVE>, <&kp RA(GRAVE)>;
+        };
+
+        // Single tap: ^   Double tap: dead circumflex (ê, â, î...)
+        td_circumflex: tap_dance_circumflex {
+            compatible = "zmk,behavior-tap-dance";
+            label = "TAP_DANCE_CIRCUMFLEX";
+            #binding-cells = <0>;
+            tapping-term-ms = <200>;
+            bindings = <&kp CARET>, <&kp RA(N6)>;
         };
 
         pwda: pop_os_workspace_down {
@@ -85,13 +113,13 @@
 
                 default_layer {
 // -----------------------------------------------------------------------------------------
-// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U   |  I  |  O  |  P  | BKSP |
-// | CTRL |  A  |  S  |  D  |  F  |  G  |   |  H  |  J   |  K  |  L  |  ;  |  '   |
-// | SHFT |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M   |  ,  |  .  |  /  | ESC  |
-//                    | GUI | LWR | SPC |   | ENT | RSE  | ALT |
+// |  TAB |  Q  |  W  |  E  |  R  |  T  |   |  Y  |  U  |  I  |  O  |  P  | BKSP |
+// |  ESC |  A  |  S  |  D  |  F  |  G  |   |  H  |  J  |  K  |  L  |  ;  | '/´ |
+// | CTRL |  Z  |  X  |  C  |  V  |  B  |   |  N  |  M  |  ,  |  .  |  /  | RALT |
+//                    | GUI | LWR | SPC |   | ENT | RSE | SHFT/CAPS |
                         bindings = <
    &kp TAB   &kp Q &kp W &kp E &kp R &kp T   &kp Y &kp U  &kp I     &kp O   &kp P    &kp BSPC
-   &kp ESC &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &kp SQT
+   &kp ESC &kp A &kp S &kp D &kp F &kp G   &kp H &kp J  &kp K     &kp L   &kp SEMI &td_acute
    &skh LCTRL LCTRL &kp Z &kp X &kp C &kp V &kp B   &kp N &kp M  &kp COMMA &kp DOT &kp FSLH &skh RALT RALT
                   &kp LGUI &mo LOWER &kp SPACE   &kp RET &mo RAISE &td_caps
                         >;
@@ -100,10 +128,10 @@
 
                lower_layer {
 // -----------------------------------------------------------------------------------------
-// |  TAB |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  |  DEL |
-// | BTCLR| BT1 | BT2 | BT3 | BT4 | BT5 |   | LFT | DWN |  UP | RGT |     |      |
-// | SHFT |     |     |     |     |     |   |     |     |     |     |     |      |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
+// |  DEL |  1  |  2  |  3  |  4  |  5  |   |  6  |  7  |  8  |  9  |  0  |  DEL |
+// | SHFT |     | WS← | WS↑ | WS↓ | WS→ |   | LFT | DWN |  UP | RGT |     |      |
+// |      | BT0 | BT1 | BT2 | BT3 | BT4 |   |     | V-  | V+  | MUT |     |      |
+//                    |BTCLR|     | SPC |   | ENT |     | SHFT |
                         bindings = <
    &kp DEL    &kp N1       &kp N2       &kp N3       &kp N4       &kp N5         &kp N6   &kp N7   &kp N8 &kp N9    &kp N0 &kp DEL
    &kp LSHIFT &trans &pwla &pwua &pwda &pwra   &kp LEFT &kp DOWN &kp UP &kp RIGHT &trans &trans
@@ -114,29 +142,19 @@
 
                 raise_layer {
 // -----------------------------------------------------------------------------------------
-// |  TAB |  !  |  @  |  #  |  $  |  %  |   |  ^  |  &  |  (  |  )  |  *  |  DEL |
-// | CTRL |     |     |     |     |     |   |  -  |  =  |  [  |  ]  |  _  |  \   |
-// | SHFT |     |     |     |     |     |   |  `  |  +  |  {  |  }  | "|" |  ~   |
-//                    | GUI |     | SPC |   | ENT |     | ALT |
+// |  TAB |  !  |  @  |  #  |  $  |  %  |   | ^/ê |  &  |  (  |  )  |  *  |  DEL |
+// |  F1  |  F2 |  F3 |  F4 |  F5 |  F6 |   |  -  |  =  |  [  |  ]  |  _  |  \   |
+// |  F7  |  F8 |  F9 | F10 | F11 | F12 |   | `/è |  +  |  {  |  }  |  |  |  ~   |
+//                    | CTRL| ALT | SHFT|   | ENT |     | RALT |
                         bindings = <
-   &kp TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &kp CARET &kp AMPS  &kp LPAR &kp RPAR &kp STAR &kp DEL
+   &kp TAB  &kp EXCL &kp AT &kp HASH &kp DLLR &kp PRCNT   &td_circumflex &kp AMPS  &kp LPAR &kp RPAR &kp STAR &kp DEL
    &kp F1  &kp F2  &kp F3 &kp F4   &kp F5  &kp F6      &kp MINUS &kp EQUAL &kp LBKT        &kp RBKT &kp UNDER &kp BSLH
-   &kp F7 &kp F8   &kp F9 &kp F10  &kp F11  &kp F12      &kp GRAVE &kp PLUS  &kp LBRC        &kp RBRC &kp PIPE &kp TILDE
+   &kp F7 &kp F8   &kp F9 &kp F10  &kp F11  &kp F12      &td_grave &kp PLUS  &kp LBRC        &kp RBRC &kp PIPE &kp TILDE
                     	     &sk LCTRL &sk LALT   &sk LSHIFT   &kp RET   &trans    &kp RALT
                         >;
 
                 };
 
-                extra_1 {
-                        status = "reserved";
-                };
-
-                extra_2 {
-                        status = "reserved";
-                };
-
-                extra_3 {
-                        status = "reserved";
-                };
         };
 };
+
